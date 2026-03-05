@@ -1,73 +1,609 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>Sushi Haru Dubbo - The best sushi in the western plains!</title>
-    <link rel="icon" href="resources/favicon 480px.png">
-    <link href="./style.css"
-          rel="stylesheet" type="text/css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toothless — Cosplay Photography</title>
+<meta name="description" content="Cosplay photography by Toothless. Portraits, editorial, and convention photography. Open for collaboration.">
+<meta property="og:title" content="Toothless — Cosplay Photography">
+<meta property="og:description" content="Cosplay photography portfolio. Open for collaboration.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toothless.photography">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@toothless1284">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg-card: #111111;
+    --text: #e8e4df;
+    --text-dim: #807b74;
+    --accent: #c9a87c;
+    --accent-dim: rgba(201, 168, 124, 0.15);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Manrope', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    transition: background 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---- HERO ---- */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(201,168,124,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(201,168,124,0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.2s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.5s;
+  }
+
+  .hero-line {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 2rem auto;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.7s;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1s;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 30px;
+    background: var(--accent);
+    margin: 0.8rem auto 0;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ---- GALLERY ---- */
+  .section-header {
+    text-align: center;
+    padding: 6rem 2rem 3rem;
+  }
+
+  .section-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header p {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .gallery {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    columns: 3;
+    column-gap: 1rem;
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0, 0.25, 1), filter 0.6s;
+    filter: brightness(0.9);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.03);
+    filter: brightness(1);
+  }
+
+  .gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.2rem 1.2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .gallery-item:hover .overlay { opacity: 1; }
+
+  .overlay .title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+
+  .overlay .cosplayer {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 0.3rem;
+  }
+
+  /* ---- LIGHTBOX ---- */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(5, 5, 5, 0.97);
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .lightbox.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 2px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    font-family: var(--sans);
+  }
+
+  .lightbox-close:hover { color: var(--accent); }
+
+  /* ---- ABOUT ---- */
+  .about {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    text-align: center;
+  }
+
+  .about h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .about p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .about p strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ---- CTA ---- */
+  .cta {
+    text-align: center;
+    padding: 4rem 2rem 8rem;
+  }
+
+  .cta h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+  }
+
+  .cta p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .social-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.8rem 2rem;
+    border: 1px solid rgba(201, 168, 124, 0.3);
+    border-radius: 2px;
+    transition: all 0.3s;
+    font-family: var(--sans);
+    font-weight: 400;
+  }
+
+  .social-links a:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    .gallery { columns: 2; }
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+  }
+
+  @media (max-width: 550px) {
+    .gallery { columns: 1; max-width: 500px; }
+    .nav-links { display: none; }
+    nav { justify-content: center; }
+  }
+</style>
 </head>
+<body>
 
-<body class="body-2">
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-brand">Toothless</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<div class="navigation w-nav">
-    <div class="navigation-wrap"><a href="index.html" aria-current="page" class="logo-link w-nav-brand w--current"><img
-            src="resources/Sushi Haru Logo.png"
-            width="108" alt="" class="logo-image"/></a>
-        <div class="menu">
-            <nav role="navigation" class="navigation-items w-nav-menu">
-                <a href="index.html"
-                   class="navigation-item w-nav-link">Home</a>
-                <a href="menu.html"
-                   class="navigation-item w-nav-link">Menu</a>
-                <a href="platters.html"
-                   class="navigation-item w-nav-link">Platters</a>
-            </nav>
+<!-- HERO -->
+<section class="hero">
+  <h1>Cosplay<br><em>Photography</em></h1>
+  <div class="hero-line"></div>
+  <p class="hero-sub">Capturing characters &amp; the people behind them</p>
+  <div class="scroll-hint">Scroll</div>
+</section>
 
-            <div class="menu-button w-nav-button"><img
-                    src="https://uploads-ssl.webflow.com/63700f57ef41c943751f79d4/63700f57ef41c91cf61f7a09_menu-icon.png"
-                    width="22" alt="" class="menu-icon"/></div>
-        </div>
+<!-- GALLERY -->
+<section id="work">
+  <div class="section-header reveal">
+    <p>Selected Work</p>
+    <h2>Gallery</h2>
+  </div>
+
+  <div class="gallery">
+
+    <!--
+      HOW TO ADD PHOTOS:
+      1. Put your images in an "img/" folder next to this file
+      2. Replace the src, data-title, and data-cosplayer below
+      3. Copy+paste a gallery-item block to add more
+    -->
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1100/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
     </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1000/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1200/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x900/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1100/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1000/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1300/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1050/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <img src="https://placehold.co/800x1150/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
+           data-title="Character Name" data-cosplayer="@ cosplayer handle">
+      <div class="overlay">
+        <div class="title">Character Name</div>
+        <div class="cosplayer">@ cosplayer handle</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about reveal">
+  <h2>About</h2>
+  <p>
+    Cosplay photographer based in <strong>[Your City]</strong>.
+    I shoot portraits, editorial, and on-location at conventions.
+    My goal is to make your character look the way you imagined them.
+  </p>
+  <p>
+    Currently shooting <strong>TFP / collaboration</strong> — if you want to work together,
+    send me a message on any of the platforms below.
+  </p>
+</section>
+
+<!-- CONTACT / CTA -->
+<section id="contact" class="cta reveal">
+  <h2>Let's shoot</h2>
+  <p>Open for collaboration — DM me anytime</p>
+  <div class="social-links">
+    <a href="https://instagram.com/toothless1284" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/toothless1284" target="_blank" rel="noopener">X / Twitter</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2026 Toothless &mdash; All rights reserved
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close">Close &times;</button>
+  <img id="lightbox-img" src="" alt="Full size photo">
 </div>
 
-<div class="section-6 wf-section"><img
-        src="https://uploads-ssl.webflow.com/63700f57ef41c943751f79d4/63700fb84a3e3c177b96884c_241540422_716466915923528_1452165786324116561_n.jpg"
-        srcset="https://uploads-ssl.webflow.com/63700f57ef41c943751f79d4/63700fb84a3e3c177b96884c_241540422_716466915923528_1452165786324116561_n-p-500.jpg 500w, https://uploads-ssl.webflow.com/63700f57ef41c943751f79d4/63700fb84a3e3c177b96884c_241540422_716466915923528_1452165786324116561_n.jpg 960w"
-        sizes="70vw" alt="" class="image-9"/></div>
-<div id="what-were-about" class="container backboard">
-    <div class="text-block-7">Serving a mixture of Japanese and Korean dishes along with a wide
-        variety of freshly made sushi, the sushi train of Orana Mall is not to be missed!<br/><br/> Come dine-in today!
-    </div>
-</div>
-<section id="gallery" class="gallery wf-section"></section>
-<div id="menue" class="menue">
-    <div class="container-2 w-container"></div>
-</div>
-<div class="section-3 wf-section">
-    <div class="bottom-wrap">
-        <div class="_33"><a href="/" aria-current="page" class="home-link w-inline-block w--current"><img
-                src="resources/Sushi Haru Logo.png"
-                width="100" alt="" class="image-4"/></a><a href="#" class="link-block-4 w-inline-block"><img
-                src="resources/footer1.png"
-                loading="lazy" width="48" alt="" class="image-6"/>
-            <div class="text-block-15">Address</div>
-            <div class="text-block-15">T34 Orana mall Wheelers lane, Dubbo NSW 2830<br/></div>
-        </a></div>
-        <div class="_33 middle"><a href="#" class="link-block-3 w-inline-block"><img
-                src="resources/footer2.png"
-                loading="lazy" width="48" alt="" class="image-5"/>
-            <p class="paragraph-3">Hours<br/></p>
-            <div class="text-block-11">Mon To Sat 10:00 AM to 8:00 PM</div>
-            <div class="text-block-12">Sun 10:00 AM to 4:00 PM</div>
-        </a></div>
-        <div class="_33 far"><a href="#" class="link-block-3 w-inline-block"><img
-                src="resources/footer3.png"
-                loading="lazy" width="48" alt="" class="image-5"/>
-            <p class="paragraph-3">Contact Us<br/></p>
-            <div class="text-block-13">Phone: 02 6884 6778<br/></div>
-            <div class="text-block-14">Email: sohnjh80@gmail.com</div>
-        </a></div>
-    </div>
-</div>
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Lightbox
+  function openLightbox(item) {
+    const img = item.querySelector('img');
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src = img.src;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
 </body>
 </html>
