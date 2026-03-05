@@ -439,96 +439,8 @@
     <h2>Gallery</h2>
   </div>
 
-  <div class="gallery">
-
-    <!--
-      HOW TO ADD PHOTOS:
-      1. Put your images in an "img/" folder next to this file
-      2. Replace the src, data-title, and data-cosplayer below
-      3. Copy+paste a gallery-item block to add more
-    -->
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1100/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1000/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1200/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x900/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1100/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1000/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1300/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1050/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
-    <div class="gallery-item reveal" onclick="openLightbox(this)">
-      <img src="https://placehold.co/800x1150/1a1a1a/333?text=Your+Photo" alt="Cosplay photo"
-           data-title="Character Name" data-cosplayer="@ cosplayer handle">
-      <div class="overlay">
-        <div class="title">Character Name</div>
-        <div class="cosplayer">@ cosplayer handle</div>
-      </div>
-    </div>
-
+  <div class="gallery" id="gallery">
+    <!-- Photos load dynamically from photos.json -->
   </div>
 </section>
 
@@ -536,25 +448,13 @@
 <section id="about" class="about reveal">
   <h2>About</h2>
   <p>
-    Cosplay photographer splitting time between <strong>Sydney and Tokyo</strong>.
-    I shoot portraits, editorial, and on-location at conventions — 
-    the kind of photos that make your character feel real, not just documented.
+    Cosplay photographer based in <strong>[Your City]</strong>.
+    I shoot portraits, editorial, and on-location at conventions.
+    My goal is to make your character look the way you imagined them.
   </p>
   <p>
-    Currently shooting <strong>TFP / collaboration only</strong>. 
-    If you've got a character you want to bring to life, DM me on any of the platforms below.
-  </p>
-
-  <hr style="border: none; border-top: 1px solid rgba(201,168,124,0.2); margin: 2.5rem auto; width: 60px;">
-
-  <p lang="ja" style="font-size: 0.9rem;">
-    シドニーと東京を拠点に活動しているコスプレフォトグラファーです。
-    ポートレート、エディトリアル、コンベンション会場でのロケ撮影をしています。
-    あなたのキャラクターを、あなたが思い描いた通りに撮ります。
-  </p>
-  <p lang="ja" style="font-size: 0.9rem;">
-    現在は<strong>相互無償（TFP）</strong>で撮影しています。
-    一緒に撮りたい方は、お気軽にDMください。
+    Currently shooting <strong>TFP / collaboration</strong> — if you want to work together,
+    send me a message on any of the platforms below.
   </p>
 </section>
 
@@ -564,7 +464,7 @@
   <p>Open for collaboration — DM me anytime</p>
   <div class="social-links">
     <a href="https://instagram.com/toothless1284" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://x.com/toothy1284" target="_blank" rel="noopener">X / Twitter</a>
+    <a href="https://x.com/toothless1284" target="_blank" rel="noopener">X / Twitter</a>
   </div>
 </section>
 
@@ -580,17 +480,47 @@
 </div>
 
 <script>
+  // Load gallery from photos.json
+  async function loadGallery() {
+    try {
+      const res = await fetch('photos.json');
+      const photos = await res.json();
+      const gallery = document.getElementById('gallery');
+
+      photos.forEach(photo => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item reveal';
+        item.onclick = function() { openLightbox(this); };
+        item.innerHTML = `
+          <img src="${photo.src}" alt="${photo.character || 'Cosplay photo'}" loading="lazy">
+          <div class="overlay">
+            <div class="title">${photo.character || ''}</div>
+            ${photo.cosplayer ? `<div class="cosplayer">${photo.cosplayer}</div>` : ''}
+          </div>
+        `;
+        gallery.appendChild(item);
+      });
+
+      // Set up scroll reveal after gallery is loaded
+      initReveal();
+    } catch (e) {
+      console.error('Failed to load photos.json:', e);
+    }
+  }
+
   // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  function initReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  }
 
   // Nav background on scroll
   const nav = document.getElementById('nav');
@@ -615,6 +545,9 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
   });
+
+  // Init
+  loadGallery();
 </script>
 
 </body>
